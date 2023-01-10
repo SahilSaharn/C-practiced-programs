@@ -1,0 +1,67 @@
+#include<stdio.h>
+#include<string.h>
+#include<math.h>
+void inputarr(int array[],int size,int start)
+{
+    if(start==size){
+        return;
+    }
+    scanf("%d",&array[start]);
+    inputarr(array,size,start+1);
+}
+
+void sort(int array[],int size)
+{
+    for(int i=0;i<size-1;i++){
+
+        for(int j=0;j<size-1;j++){
+            if(array[j]<array[j+1]){
+                int temp = array[j];
+                array[j]= array[j+1];
+                array[j+1] = temp;
+            }
+        }
+    }
+}
+
+int main()
+{
+    int size;
+    printf("enter the size:");
+    scanf("%d",&size);
+    int arr[size];
+    printf("enter the element of array:--\n");
+    inputarr(arr,size,0);
+    sort(arr,size);
+    int key,end,mid,start,flag;
+    printf("enter the element you want to search:");
+    scanf("%d",&key);
+    start=flag=0;
+    end = size-1;
+
+    while(start<=end)
+    {
+        mid = (start+end)/2;
+
+        if(arr[mid]== key){
+            printf("element found at %d index\n",mid);
+            flag = 1;
+            break;
+        }
+
+        else if( arr[mid]>key)
+        {
+            start = mid+1;
+        }
+
+        else if(arr[mid]< key)
+        {
+            end =mid -1;
+        }
+    }
+    if(flag ==0){
+        printf("element not found==\n");
+    }
+
+    return 0;
+}
